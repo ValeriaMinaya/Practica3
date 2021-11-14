@@ -107,8 +107,10 @@ public class BuscarUsuario extends javax.swing.JFrame {
         jLabel8.setText("Código de documento");
 
         editar.setText("Editar datos");
+        editar.setEnabled(false);
 
         eliminar.setText("Eliminar usuario");
+        eliminar.setEnabled(false);
 
         salir.setText("Salir");
 

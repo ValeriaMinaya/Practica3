@@ -33,6 +33,15 @@ public class Usuarios {
         }
         return null;
     }
+        //buscar usuario en Usuarios
+    public Usuario buscarUsuario(Usuario user){
+        for(Usuario usuario: usuarios){
+            if(usuario.equals(user)){
+                return usuario;
+            }
+        }
+        return null;
+    }
     // posicion de usuario
     public int posicionUsuario(Usuario usuario){
         return usuarios.indexOf(usuario);
@@ -86,5 +95,23 @@ public class Usuarios {
                 break;
             }
         }
+    }
+    
+ //recargar tarjeta
+    public boolean recargarTarjeta(Usuario usuario, Tarjeta tarjeta, Movimiento cantidad){
+       return  usuario.getTarjetas().get(usuario.getTarjetas().indexOf(tarjeta)).recargar(cantidad);
+    }    
+    //consumir tarjeta
+    public boolean consumirTarjeta(Usuario usuario, Tarjeta tarjeta, Movimiento cantidad){
+        return usuario.getTarjetas().get(usuario.getTarjetas().indexOf(tarjeta)).consumir(cantidad);
+    }
+    //buscar tarjeta por codigo
+    public Tarjeta buscarTarjeta(Usuario usuario, int codigo){
+        for(Tarjeta tarjeta: usuario.getTarjetas()){
+            if(tarjeta.getNumero()==codigo){
+                return tarjeta;
+            }
+        }
+        return null;
     }
 }

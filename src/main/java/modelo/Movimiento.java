@@ -1,16 +1,16 @@
 package modelo;
 
-import java.util.Date;
 
+import java.util.Calendar;
 public class Movimiento {
     private int codigo;
     private String tipo;
-    private Date fecha;
+    private String fecha;
     private float monto;
     private Estacion estacion;
 
     //constructor
-    public Movimiento(int codigo, String tipo, Date fecha, float monto, Estacion estacion) {
+    public Movimiento(int codigo, String tipo, String fecha, float monto, Estacion estacion) {
         this.codigo = codigo;
         this.tipo = tipo;
         this.fecha = fecha;
@@ -27,7 +27,7 @@ public class Movimiento {
         return tipo;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -49,9 +49,7 @@ public class Movimiento {
         this.tipo = tipo;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+
 
     public void setMonto(float monto) {
         this.monto = monto;

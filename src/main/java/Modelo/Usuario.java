@@ -19,23 +19,14 @@ public class Usuario {
         this.tarjetas = new ArrayList<Tarjeta>();
     }
 
-    //recargar tarjetas
-    public float recargar( Tarjeta tarjeta,Movimiento movimiento) {
-        int pos=this.tarjetas.indexOf(tarjeta);
-        if(pos>=0){
-            this.tarjetas.get(pos).recargar(movimiento.getMonto(),movimiento);
-            return this.tarjetas.get(pos).getSaldo();
-        }
-        return 0;
+ //recargar tarjeta
+    public boolean recargar(Tarjeta tarjeta, Movimiento monto){
+        return tarjeta.recargar(monto);
     }
-    //consumir tarjetas boolean
-    public boolean consumir(Tarjeta tarjeta,Movimiento movimiento){
-        int pos=this.tarjetas.indexOf(tarjeta);
-        if(pos>=0){
-            this.tarjetas.get(pos).consumir(movimiento.getMonto(),movimiento);
-            return true;
-        }
-        return false;
+
+   //consumir tarjeta
+    public boolean consumir(Tarjeta tarjeta, Movimiento monto){
+        return tarjeta.consumir(monto);
     }
     
     //metodos get y set
@@ -88,7 +79,16 @@ public class Usuario {
     public void removeTarjeta(Tarjeta tarjeta) {
         this.tarjetas.remove(tarjeta);
     }
-
+     //mostrar tarjetas
+    public String mostrarTarjetas(){
+        String tarjetas="";
+        int i=1;
+        for(Tarjeta tarjeta:this.tarjetas){
+            tarjetas+="Tarjeta ["+i+"] "+tarjeta.toString()+"\n";
+            i++;
+        }
+        return tarjetas;
+    }
     //toString
     @Override
     public String toString() {

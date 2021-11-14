@@ -48,44 +48,29 @@ public class ControladorBuscarUsuario {
                             BU.tipoDOC.setSelectedIndex(1);
                         }
                         BU.codUser.setText(String.valueOf(u1.getTipoDocumento().getCodigo()));
+                        BU.editar.setEnabled(true);
+                        BU.eliminar.setEnabled(true);
                     }
                     
                 }catch(Exception error){
-                    BU.errorBU.setText(error.getMessage());
+                    BU.errorBU.setText("error: "+error.getMessage());
                 }
             }
         });
         this.BU.editar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
-                    cod=Integer.parseInt(BU.codDoc.getText());
-                    u1=users.buscarUsuario(cod);
-                    if(u1==null){
-                        BU.errorBU.setText("Usuario no encontrado");
-                        limpiarcodbuscar();
-                        System.out.println("Usuario encontrado: "+u1);
-                    }else{
-                        BU.apellidoP.setText(u1.getPaterno());
-                        BU.apellidoM.setText(u1.getMaterno());
-                        BU.nombresBU.setText(u1.getNombres());
-                        if(u1.getTipoDocumento().getNombre().equals("DNI")){
-                            BU.tipoDOC.setSelectedIndex(0);
-                            
-                        }else{
-                            BU.tipoDOC.setSelectedIndex(1);
-                        }
-                        BU.codUser.setText(String.valueOf(u1.getTipoDocumento().getCodigo()));
-                        BU.apellidoP.setEditable(true);
-                        BU.apellidoM.setEditable(true);
-                        BU.codUser.setEditable(true);
-                        BU.nombresBU.setEditable(true);
-                        BU.tipoDOC.setEnabled(true);
-                        BU.guardar.setEnabled(true);
-                    }
-                    
-                }catch(Exception error){
-                    
+                try {
+                    BU.codUser.setText(String.valueOf(u1.getTipoDocumento().getCodigo()));
+                    BU.apellidoP.setEditable(true);
+                    BU.apellidoM.setEditable(true);
+                    BU.codUser.setEditable(true);
+                    BU.nombresBU.setEditable(true);
+                    BU.tipoDOC.setEnabled(true);
+                    BU.guardar.setEnabled(true);
+
+                } catch (Exception error) {
+                    BU.errorBU.setText("error: "+error.getMessage());
                 }
             }
         });
@@ -93,31 +78,79 @@ public class ControladorBuscarUsuario {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    cod=Integer.parseInt(BU.codDoc.getText());
-                    u1=users.buscarUsuario(cod);
-                    if(u1==null){
-                        BU.errorBU.setText("Usuario no encontrado");
-                        limpiarcodbuscar();
-                        System.out.println("Usuario encontrado: "+u1);
+                    if(BU.codDoc.getText().equals(BU.codUser.getText())){
+                        d=new TipoDocumento(Integer.parseInt(BU.codUser.getText()),BU.tipoDOC.getSelectedItem().toString());
+                        users.editarUsuario(Integer.parseInt(BU.codUser.getText()), BU.nombresBU.getText(), BU.apellidoP.getText(), BU.apellidoM.getText(), d);
+                        BU.errorBU.setText("Editado exitosamente");
+                        limpiarCampos();
+                        //inhabilitar textfields y botones
+                        BU.apellidoP.setEditable(false);
+                        BU.apellidoM.setEditable(false);
+                        BU.nombresBU.setEditable(false);
+                        BU.codUser.setEditable(false);
+                        BU.tipoDOC.setEnabled(false);
+                        BU.guardar.setEnabled(false);
+                        BU.editar.setEnabled(false);
+                        BU.eliminar.setEnabled(false);
                     }else{
-                      
-                        if(u1.getTipoDocumento().getNombre().equals("DNI")){
-                            BU.tipoDOC.setSelectedIndex(0);
-                            
-                        }else{
-                            BU.tipoDOC.setSelectedIndex(1);
+                        u1 = users.buscarUsuario(Integer.parseInt(BU.codUser.getText()));
+                        System.out.println(u1);
+                        if (u1 != null) {
+                            BU.errorBU.setText("Usuario existente con ese documento");
+                        } else {
+                            d = new TipoDocumento(Integer.parseInt(BU.codUser.getText()), BU.tipoDOC.getSelectedItem().toString());
+                            users.editarUsuario(cod, BU.nombresBU.getText(), BU.apellidoP.getText(), BU.apellidoM.getText(), d);
+                            System.out.println(users.verUsuarios());
+                            BU.errorBU.setText("Editado exitosamente");
+                            limpiarCampos();
+                            //inhabilitar textfields y botones
+                            BU.apellidoP.setEditable(false);
+                            BU.apellidoM.setEditable(false);
+                            BU.nombresBU.setEditable(false);
+                            BU.codUser.setEditable(false);
+                            BU.tipoDOC.setEnabled(false);
+                            BU.guardar.setEnabled(false);
+                            BU.editar.setEnabled(false);
+                            BU.eliminar.setEnabled(false);
                         }
-                        BU.codUser.setText(String.valueOf(u1.getTipoDocumento().getCodigo()));
-                        BU.apellidoP.setEditable(true);
-                        BU.apellidoM.setEditable(true);
-                        BU.codUser.setEditable(true);
-                        BU.nombresBU.setEditable(true);
-                        BU.tipoDOC.setEnabled(true);
-                        BU.guardar.setEnabled(true);
                     }
                     
-                }catch(Exception error){
                     
+                }catch(Exception error){
+                    BU.errorBU.setText("error: "+error.getMessage());
+                }
+            }
+        });
+        this.BU.eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    users.removeUsuario(cod);
+                    BU.errorBU.setText("Eliminado exitosamente");
+                    limpiarCampos();
+                    //inhabilitar textfields y botones
+                    BU.apellidoP.setEditable(false);
+                    BU.apellidoM.setEditable(false);
+                    BU.nombresBU.setEditable(false);
+                    BU.codUser.setEditable(false);
+                    BU.tipoDOC.setEnabled(false);
+                    BU.guardar.setEnabled(false);
+                    BU.editar.setEnabled(false);
+                    BU.eliminar.setEnabled(false);
+                } catch (Exception error) {
+                    BU.errorBU.setText("error: "+error.getMessage());
+                }
+            }
+        });
+        this.BU.salir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ocultar();
+                    principal.setLocationRelativeTo(null);
+                    principal.setVisible(true);
+                } catch (Exception error) {
+                    BU.errorBU.setText("error: "+error.getMessage());
                 }
             }
         });
@@ -135,7 +168,15 @@ public class ControladorBuscarUsuario {
     public void limpiarcodbuscar(){
         BU.codDoc.setText("");
     }
-    
+    public void limpiarCampos(){
+        BU.apellidoM.setText("");
+        BU.apellidoP.setText("");
+        BU.codDoc.setText("");
+        BU.codUser.setText("");
+        BU.nombresBU.setText("");
+        BU.tipoDOC.setSelectedIndex(-1);
+        
+    }
 
     }
 

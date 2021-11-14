@@ -319,6 +319,7 @@
         <Component class="javax.swing.JButton" name="editar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar datos"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -327,6 +328,7 @@
         <Component class="javax.swing.JButton" name="eliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar usuario"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

@@ -32,7 +32,7 @@ public class RegistroTarjetas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         buscarcodigoRT = new javax.swing.JTextField();
         buscaruserRT = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -59,9 +59,9 @@ public class RegistroTarjetas extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(51, 255, 0));
-        jLabel3.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel3.setText("error");
+        error.setBackground(new java.awt.Color(51, 255, 0));
+        error.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        error.setForeground(new java.awt.Color(255, 0, 51));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel4.setText("Número de tarjeta");
@@ -88,6 +88,7 @@ public class RegistroTarjetas extends javax.swing.JFrame {
 
         registrarT.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         registrarT.setText("Registrar Tarjeta");
+        registrarT.setEnabled(false);
 
         salirT.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         salirT.setText("Salir");
@@ -109,7 +110,7 @@ public class RegistroTarjetas extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 10, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -142,7 +143,7 @@ public class RegistroTarjetas extends javax.swing.JFrame {
                     .addComponent(buscaruserRT, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarcodigoRT, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -226,9 +227,9 @@ public class RegistroTarjetas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField buscarcodigoRT;
     public javax.swing.JButton buscaruserRT;
+    public javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

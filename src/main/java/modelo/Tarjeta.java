@@ -19,19 +19,19 @@ public class Tarjeta {
     }
 
 
-    //recargar tarjeta
-    public boolean recargar(float cantidad,Movimiento movimiento) {
+//recargar tarjeta
+    public boolean recargar(Movimiento movimiento) {
         if (activa) {
-            saldo += cantidad;
+            saldo += movimiento.getMonto();
             movimientos.add(movimiento);
             return true;
         }else return false;
     }
     //consumir
-    public boolean consumir(float cantidad,Movimiento movimiento) {
+    public boolean consumir(Movimiento movimiento) {
         if (activa) {
-            if (saldo >= cantidad) {
-                saldo -= cantidad;
+            if (saldo >= movimiento.getMonto()) {
+                saldo -= movimiento.getMonto();
                 movimientos.add(movimiento);
                 return true;
             } else return false;

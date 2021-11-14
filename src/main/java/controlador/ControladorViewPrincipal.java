@@ -44,6 +44,22 @@ public class ControladorViewPrincipal {
             BU.setVisible(true);
             }
         });
+        this.principal.agregarTar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+            ocultar();
+            RT.setLocationRelativeTo(null);
+            RT.setVisible(true);
+            }
+        });
+        this.principal.registrarMov.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+            ocultar();
+            RM.setLocationRelativeTo(null);
+            RM.setVisible(true);
+            }
+        });
     }
     
     public void iniciar(){
